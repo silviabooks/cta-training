@@ -5,11 +5,17 @@ services:
     image: postgres:14.1
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
 
   adminer:
     image: adminer:4.7
-    links:
-      - postgres:db
     ports:
       - "${ADMINER_PORT:-8008}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
