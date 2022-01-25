@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+
+  nginx:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+
+networks:
+  hasuraproject:
+    driver: bridge
