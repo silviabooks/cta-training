@@ -14,7 +14,7 @@ services:
       retries: 20
 
   adminer:
-    image: adminer:4.7
+    image: adminer:4.8.1
     ports:
       - "${ADMINER_PORT:-8008}:8080"
     depends_on:
