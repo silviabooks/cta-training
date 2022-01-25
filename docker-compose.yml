@@ -1,13 +1,5 @@
 version: "3.8"
-
 services:
-
-  nginx:
-    image: nginx:1.21.5
-    ports:
-      - ${NGINX_PORT:-8080}:80
-    volumes:
-      - ./html:/usr/share/nginx/html:ro
 
   postgres:
     image: postgres:14.1
@@ -21,6 +13,3 @@ services:
     ports:
       - "${ADMINER_PORT:-8008}:8080"
 
-networks:
-  hasuraproject:
-    driver: bridge
