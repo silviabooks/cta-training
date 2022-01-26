@@ -1,9 +1,9 @@
 const multiplyRoute = (request, reply) => {
   console.log(request.body);
 
-  // return request.body.input.num1 * request.body.input.num1
+  const result = request.body.input.num1 * request.body.input.num2;
 
-  reply.send('ok');
+  reply.send({ result });
 };
 
 module.exports = multiplyRoute;
