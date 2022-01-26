@@ -4,6 +4,7 @@ const fastifyHealthz = require("@forrestjs/service-fastify-healthz");
 
 const homePage = require('./features/home-page');
 const infoFeature = require('./features/info');
+const multiplyFeature = require('./features/multiply');
 
 runHookApp({
   trace: "compact",
@@ -14,6 +15,7 @@ runHookApp({
   ],
   features: [
     homePage,
-    infoFeature
+    infoFeature,
+    multiplyFeature
   ]
 }).catch(console.error);
