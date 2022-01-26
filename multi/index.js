@@ -8,7 +8,11 @@ const multiplyFeature = require('./features/multiply');
 
 runHookApp({
   trace: "compact",
-  settings: {},
+  settings: {
+    fastify: {
+      port: 4000
+    }
+  },
   services: [
     fastify, 
     fastifyHealthz
