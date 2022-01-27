@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { GET_PUBLIC_USERS } = require('./queries');
 
-const whoAreWeRoute = async (request, reply) => {
+const namesListRoute = async (request, reply) => {
   const targetUrl = request.getConfig('apollo.client.config.uri');
 
   const res = await axios.post(targetUrl, {
@@ -10,9 +10,9 @@ const whoAreWeRoute = async (request, reply) => {
   
   const names = res.data.data.users
     .map(user => user.name)
-    .join(', ');
+    .map(name => name.toUpperCase());
 
-  reply.send(`We are cool: ${names}`);
+  reply.send(names);
 };
 
-module.exports = whoAreWeRoute;
+module.exports = namesListRoute;
