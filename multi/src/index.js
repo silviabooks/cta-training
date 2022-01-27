@@ -1,4 +1,5 @@
 const { runHookApp } = require("@forrestjs/hooks");
+const envalid = require('envalid');
 
 const apollo = require("@forrestjs/service-apollo");
 const fastify = require("@forrestjs/service-fastify");
@@ -8,16 +9,29 @@ const homePage = require('./features/home-page');
 const infoFeature = require('./features/info');
 const multiplyFeature = require('./features/multiply');
 
+const validatedEnv = envalid.cleanEnv(process.env, {
+  NODE_ENV: envalid.str({
+    choices: ['development', 'production']
+  }),
+  FASTIFY_PORT: envalid.num({
+    desc: 'local port where to run Fastify',
+    default: 4000
+  }),
+  HASURA_ENDPOINT: envalid.str({
+    desc: 'full url to a GraphQL API'
+  }),
+});
+
 runHookApp({
   trace: "compact",
   settings: {
     fastify: {
-      port: 4000
+      port: validatedEnv.FASTIFY_PORT
     },
     apollo: {
       client: {
         config: {
-          uri: `https://8080-marcopeg-ctatraining-6aqvuvxjdpl.ws-eu29.gitpod.io/v1/graphql`
+          uri: validatedEnv.HASURA_ENDPOINT,
         }
       }
     }
