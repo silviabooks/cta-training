@@ -2,9 +2,9 @@
   "name": "multi",
   "version": "0.0.0",
   "description": "It should multiply integers through Hasura API",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

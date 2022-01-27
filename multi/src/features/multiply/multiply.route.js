@@ -8,8 +8,8 @@ const multiplyRoute = (request, reply) => {
         path: "$.input.num1",
         code: 123
       },
-    })
-  }
+    });
+  };
 
   const result = request.body.input.num1 * request.body.input.num2;
 
