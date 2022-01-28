@@ -1,5 +1,5 @@
 {
-  "resource_version": 11,
+  "resource_version": 5,
   "metadata": {
     "version": 3,
     "sources": [
@@ -20,7 +20,41 @@
                 }
               }
             ],
+            "insert_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "amount",
+                    "id",
+                    "user_id",
+                    "notes",
+                    "created_at"
+                  ],
+                  "backend_only": false
+                }
+              }
+            ],
             "select_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "columns": [
+                    "amount",
+                    "created_at",
+                    "id",
+                    "notes"
+                  ],
+                  "filter": {
+                    "user": {
+                      "is_public": {
+                        "_eq": true
+                      }
+                    }
+                  }
+                }
+              },
               {
                 "role": "user",
                 "permission": {
@@ -58,7 +92,38 @@
                 }
               }
             ],
+            "insert_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "check": {},
+                  "set": {
+                    "is_public": "true"
+                  },
+                  "columns": [
+                    "name"
+                  ],
+                  "backend_only": false
+                }
+              }
+            ],
             "select_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "columns": [
+                    "created_at",
+                    "id",
+                    "name"
+                  ],
+                  "filter": {
+                    "is_public": {
+                      "_eq": true
+                    }
+                  },
+                  "limit": 50
+                }
+              },
               {
                 "role": "user",
                 "permission": {
@@ -98,7 +163,7 @@
       {
         "name": "multi",
         "definition": {
-          "handler": "https://4000-marcopeg-ctatraining-q5f9fd71uiq.ws-eu29.gitpod.io/multi",
+          "handler": "{{MULTI_BASE_URL}}/multi",
           "output_type": "MultiOutput",
           "arguments": [
             {
@@ -113,6 +178,19 @@
           "type": "query"
         },
         "comment": "Multiply numbers"
+      },
+      {
+        "name": "names",
+        "definition": {
+          "handler": "{{MULTI_BASE_URL}}/names",
+          "output_type": "[NamesOutput]!",
+          "type": "query"
+        },
+        "permissions": [
+          {
+            "role": "anonymous"
+          }
+        ]
       }
     ],
     "custom_types": {
@@ -123,6 +201,15 @@
             {
               "name": "result",
               "type": "Int!"
+            }
+          ]
+        },
+        {
+          "name": "NamesOutput",
+          "fields": [
+            {
+              "name": "value",
+              "type": "String!"
             }
           ]
         }

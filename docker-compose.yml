@@ -49,9 +49,23 @@ services:
     environment:
       NODE_ENV: development
       HASURA_ENDPOINT: http://hasura:8080/v1/graphql
-      FOO: hohohoho
     healthcheck:
       test: ["CMD", "wget", "-qO", "-", "http://multi:4000/healthz"]
       interval: 10s
       timeout: 5s
       retries: 20
+
+  app:
+    build:
+      context: ./app
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    volumes:
+      - ./app/public:/usr/src/app/public:delegated
+      - ./app/src:/usr/src/app/src:delegated
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    working_dir: /usr/src/app
+    entrypoint: ["npm", "start"]
+    stdin_open: true
+    tty: true

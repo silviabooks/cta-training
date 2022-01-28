@@ -1,24 +1,16 @@
-import { useQuery, gql } from '@apollo/client'
-import { HelloWorld } from './HelloWorld';
-
-const QUERY = gql`
-  query getMyUsers {
-    users {
-      name
-      expenses {
-        amount
-      }
-    }
-  }
-`;
+import { useQuery } from '@apollo/client'
+import { CreateExpense } from './CreateExpense';
+import { GET_USERS } from './queries/getUsers';
 
 function App() {
-  const res = useQuery(QUERY);
+  const res = useQuery(GET_USERS);
   console.log(res.data)
 
   return (
     <div>
-      <HelloWorld />
+      <CreateExpense users={res?.data?.users} />
+
+      <h5>Users' statistics:</h5>
       {res.data && (
         <ul>
           {res.data.users.map(user => (

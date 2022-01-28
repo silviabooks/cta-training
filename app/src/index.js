@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import App from './App';
 
+// const uri = 'https://8080-silviabooks-ctatraining-xjj22g4q2sj.ws-eu29.gitpod.io/v1/graphql';
+const uri = 'http://localhost:8080/v1/graphql';
+
 const client = new ApolloClient({
-  uri: 'https://8080-marcopeg-ctatraining-6aqvuvxjdpl.ws-eu29.gitpod.io/v1/graphql',
+  uri,
   cache: new InMemoryCache(),
 });
 
