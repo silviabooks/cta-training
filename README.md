@@ -3,7 +3,7 @@
 [![Open in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/silviabooks/cta-training)
 
 
-Run basic NGING:
+Run basic NGINX:
 
 ```bash
 docker run -p 8080:80 nginx
