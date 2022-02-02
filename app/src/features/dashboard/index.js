@@ -1,6 +1,5 @@
 import { Dashboard } from "./Dashboard";
 import { Settings } from "./Settings";
-import { DashboardTitle } from "./DashboardTitle";
 
 export const dashboard = ({ registerAction }) => {
   registerAction({
@@ -28,21 +27,16 @@ export const dashboard = ({ registerAction }) => {
     handler: [
       {
         props: {
-          to: '/',
-          children: 'Dashboard'
+          to: "/",
+          children: "Dashboard"
         }
       },
       {
         props: {
-          to: '/settings',
-          children: 'Settings'
+          to: "/settings",
+          children: "Settings"
         }
       }
     ]
-  });
-
-  registerAction({
-    hook: "$LAYOUT_TITLE_COMPONENT",
-    handler: { component: DashboardTitle }
   });
 };

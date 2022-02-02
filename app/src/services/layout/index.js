@@ -11,7 +11,7 @@ export const layout = ({ registerAction, registerHook }) => {
   });
 
   registerAction({
-    hook: "$INIT_FEATURES",
+    hook: "$INIT_SERVICES",
     handler: ({ createHook, setContext, getConfig }) => {
       // Collect routes from any feature:
       const routeItems = createHook
