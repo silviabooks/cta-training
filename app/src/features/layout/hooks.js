@@ -1,7 +1,7 @@
 /**
  * Let change the main title of the App
  */
-export const LAYOUT_TITLE = "layout/title";
+export const LAYOUT_TITLE_COMPONENT = "layout/title";
 
 /**
  * It allows to register new routes according to ReactRouter APIs

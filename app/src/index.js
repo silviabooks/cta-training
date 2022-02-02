@@ -7,6 +7,13 @@ import { dashboard } from "./features/dashboard";
 import { expenses } from "./features/expenses";
 
 runHookApp({
+  settings: {
+    layout: {
+      title: {
+        value: "MyApp"
+      }
+    }
+  },
   services: [reactRoot, reactRouter],
   features: [layout, dashboard, expenses]
 });
