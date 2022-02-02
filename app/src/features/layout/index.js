@@ -14,8 +14,13 @@ export const layout = ({ registerAction, registerHook }) => {
     hook: "$INIT_FEATURES",
     handler: ({ createHook, setContext, getConfig }) => {
       // Collect routes from any feature:
-      const routes = createHook
-        .sync(hooks.LAYOUT_ROUTES)
+      const routeItems = createHook
+        .sync(hooks.LAYOUT_ROUTE_COMPONENTS)
+        .reduce((a, c) => [...a, ...c[0]], []);
+
+      // Collect menu items from any feature:
+      const menuItems = createHook
+        .sync(hooks.LAYOUT_MENU_COMPONENTS)
         .reduce((a, c) => [...a, ...c[0]], []);
 
       // Let feature REPLACE the title component
@@ -31,7 +36,8 @@ export const layout = ({ registerAction, registerHook }) => {
       );
 
       // Export routes to the ForrestJS App context:
-      setContext("layout.routes.items", routes);
+      setContext("layout.routes.items", routeItems);
+      setContext("layout.menu.items", menuItems);
       setContext("layout.title", title);
     }
   });
