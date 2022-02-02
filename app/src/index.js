@@ -5,7 +5,8 @@ import reactRouter from "@forrestjs/react-router";
 import { layout } from "./services/layout";
 import { dashboard } from "./features/dashboard";
 import { expenses } from "./features/expenses";
-import { login } from "./features/login";
+import { loginLogic } from "./features/login-logic";
+import { loginView } from "./features/login-view";
 
 runHookApp({
   settings: {
@@ -16,5 +17,5 @@ runHookApp({
     }
   },
   services: [reactRoot, reactRouter],
-  features: [layout, dashboard, expenses, login]
+  features: [layout, dashboard, expenses, loginLogic, loginView]
 });
