@@ -59,7 +59,7 @@ services:
     build:
       context: ./meta
     depends_on:
-      postgres:
+      hasura:
         condition: service_started
     volumes:
       - ./meta/metadata:/metadata:cached
