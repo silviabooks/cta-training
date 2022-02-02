@@ -5,4 +5,11 @@
 tasks:
   - init: make
 
-
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint@2.1.1
+    - esbenp.prettier-vscode@3.20.0
+    - mikestead.dotenv@1.0.1
+    - wayou.vscode-todo-highlight@1.0.4
+    - EditorConfig.EditorConfig@0.14.4
+    - ms-azuretools.vscode-docker
