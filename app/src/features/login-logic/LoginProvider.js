@@ -1,7 +1,8 @@
 import { createContext, useContext } from "react";
 
 const INITIAL_STATE = {
-  hasLogin: false
+  hasLogin: false,
+  loginAs: (user) => console.log("Login as", user)
 };
 
 const LoginContext = createContext(INITIAL_STATE);

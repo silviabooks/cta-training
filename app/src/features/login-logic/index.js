@@ -4,6 +4,8 @@ import { LoginProvider } from "./LoginProvider";
 import { LoginView } from "./LoginView";
 import { ApolloProvider } from "./ApolloProvider";
 
+export { useLogin } from "./LoginProvider";
+
 export const loginLogic = ({ registerAction, registerHook }) => {
   registerHook(hooks);
 
