@@ -2,7 +2,6 @@ import * as hooks from "./hooks";
 import { LoginGuard } from "./LoginGuard";
 import { LoginProvider } from "./LoginProvider";
 import { LoginView } from "./LoginView";
-import { ApolloProvider } from "./ApolloProvider";
 
 export { useLogin } from "./LoginProvider";
 
@@ -31,8 +30,8 @@ export const loginLogic = ({ registerAction, registerHook }) => {
     handler: { component: LoginProvider }
   });
 
-  registerAction({
-    hook: "$REACT_ROOT_WRAPPER",
-    handler: { component: ApolloProvider }
-  });
+  // registerAction({
+  //   hook: "$REACT_ROOT_WRAPPER",
+  //   handler: { component: ApolloProvider }
+  // });
 };

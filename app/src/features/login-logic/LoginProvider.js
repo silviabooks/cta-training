@@ -1,16 +1,43 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
+import { ApolloProvider } from "@apollo/client";
 
-const INITIAL_STATE = {
-  hasLogin: false,
-  loginAs: (user) => console.log("Login as", user)
-};
+import { useApolloClient } from "./use-apollo-client";
+import { useTokenValidate } from "./use-token-validate";
+import { useTokenStorage } from "./use-token-storage";
 
-const LoginContext = createContext(INITIAL_STATE);
+const LoginContext = createContext();
 
 export const LoginProvider = (props) => {
-  console.log("Ill do smth");
+  const [hasLogin, setHasLogin] = useState(false);
 
-  return <LoginContext.Provider value={INITIAL_STATE} {...props} />;
+  // Load the current token
+  const { token, clearToken, writeToken } = useTokenStorage();
+
+  // Build the ApolloClient
+  const { client } = useApolloClient("/v1/graphql", token);
+
+  const { user, loading, error } = useTokenValidate({
+    client,
+    setHasLogin,
+    token,
+    clearToken
+  });
+
+  return (
+    <ApolloProvider client={client}>
+      <LoginContext.Provider
+        value={{
+          hasLogin,
+          user,
+          loading,
+          error,
+          writeToken,
+          logout: clearToken
+        }}
+        {...props}
+      />
+    </ApolloProvider>
+  );
 };
 
 export const useLogin = () => useContext(LoginContext);
