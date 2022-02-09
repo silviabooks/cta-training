@@ -1,8 +1,7 @@
 version: "3.8"
 services:
-
   postgres:
-    image: postgres:14.1
+    image: postgres:13
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     volumes:
@@ -67,5 +66,22 @@ services:
       CHOKIDAR_USEPOLLING: "true"
     working_dir: /usr/src/app
     entrypoint: ["npm", "start"]
+    stdin_open: true
+    tty: true
+
+  migrations:
+    build:
+      context: ./meta
+    depends_on:
+      hasura:
+        condition: service_started
+    volumes:
+      - ./meta/metadata:/metadata:cached
+      - ./meta/migrations:/migrations:cached
+      - ./meta/seeds:/seeds:cached
+    environment:
+      HASURA_ENDPOINT: http://hasura:8080
+      HASURA_ADMIN_SECRET: ${HASURA_ADMIN_SECRET:-hasura}
+      HASURA_GRAPHQL_ENABLE_TELEMETRY: "false"
     stdin_open: true
     tty: true

@@ -1,21 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import App from './App';
+import { runHookApp } from "@forrestjs/hooks";
+import reactRoot from "@forrestjs/react-root";
+import reactRouter from "@forrestjs/react-router";
+import { layout } from "./features/layout";
+import { dashboard } from "./features/dashboard";
+import { expenses } from "./features/expenses";
+import { loginLogic } from "./features/login-logic";
+import { loginView } from "./features/login-view";
 
-// const uri = 'https://8080-silviabooks-ctatraining-xjj22g4q2sj.ws-eu29.gitpod.io/v1/graphql';
-const uri = 'http://localhost:8080/v1/graphql';
-
-const client = new ApolloClient({
-  uri,
-  cache: new InMemoryCache(),
+runHookApp({
+  settings: {
+    layout: {
+      title: {
+        value: "MyApp"
+      }
+    }
+  },
+  services: [reactRoot, reactRouter],
+  features: [layout, dashboard, expenses, loginLogic, loginView]
 });
-
-ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);

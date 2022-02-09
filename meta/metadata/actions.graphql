@@ -1,0 +1,19 @@
+type Query {
+  multi(
+    num1: Int!
+    num2: Int!
+  ): MultiOutput
+}
+
+type Query {
+  names: [NamesOutput]!
+}
+
+type MultiOutput {
+  result: Int!
+}
+
+type NamesOutput {
+  value: String!
+}
+

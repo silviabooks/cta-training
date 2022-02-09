@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS "expenses";
+DROP SEQUENCE IF EXISTS expenses_id_seq;
+
+DROP TABLE IF EXISTS "users";
+DROP SEQUENCE IF EXISTS users_id_seq;

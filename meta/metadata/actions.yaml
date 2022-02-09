@@ -1,0 +1,19 @@
+actions:
+- name: multi
+  definition:
+    kind: ""
+    handler: '{{MULTI_BASE_URL}}/multi'
+  comment: Multiply numbers
+- name: names
+  definition:
+    kind: ""
+    handler: '{{MULTI_BASE_URL}}/names'
+  permissions:
+  - role: anonymous
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: MultiOutput
+  - name: NamesOutput
+  scalars: []
