@@ -1,3 +1,4 @@
+const { describe, expect, it } = require("@jest/globals");
 const { multiply } = require("./multiply");
 
 // Describe the requirements of the feature
